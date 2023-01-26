@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/266.dc677757.chunk.js","mappings":"iKASA,UATc,WACZ,OACE,0BACE,mDACG,kBADH,yCAIL,C","sources":["pages/Home.js"],"sourcesContent":[" const Home = () => {\n  return (\n    <div>\n      <h1>Welcome to Phonebook!\n         <br></br>Register or Log In to get started.</h1>\n    </div>\n  );\n}\n\nexport default Home;"],"names":[],"sourceRoot":""}
