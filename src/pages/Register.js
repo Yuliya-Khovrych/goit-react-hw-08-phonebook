@@ -27,14 +27,6 @@ const Register = () => {
       .catch(() =>
         toast.error(`ERROR! User with the same name or email already exists.`)
       );
-
-    dispatch(
-      register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
   };
 
   return (
