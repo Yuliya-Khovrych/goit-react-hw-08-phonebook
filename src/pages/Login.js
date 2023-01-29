@@ -1,18 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 import { logIn } from '../redux/auth/authOperation';
 
-import { selectLoginError } from '../redux/auth/authSelectors';
 import {
   Form,
   Field,
   Input,
   Button,
-  ErrorText,
 } from '../components/ContactForm/ContactForm.styled';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const errorLogin = useSelector(selectLoginError);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -23,7 +22,11 @@ const Login = () => {
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
-    );
+    )
+      .then(unwrapResult)
+      .catch(() =>
+        toast.error(`ERROR! Check your email or password and try again.`)
+      );
   };
 
   return (
@@ -44,9 +47,6 @@ const Login = () => {
         </Field>
         <Button type="submit">Log In</Button>
       </Form>
-      {errorLogin && (
-        <ErrorText>ERROR! Check your email and password or register.</ErrorText>
-      )}
     </>
   );
 };

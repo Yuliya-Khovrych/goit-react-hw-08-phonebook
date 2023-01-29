@@ -1,21 +1,33 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 import { register } from '../redux/auth/authOperation';
-import { selectRegisterError } from '../redux/auth/authSelectors';
+
 import {
   Form,
   Field,
   Input,
   Button,
-  ErrorText,
 } from '../components/ContactForm/ContactForm.styled';
 
 const Register = () => {
   const dispatch = useDispatch();
-  const errorRegister = useSelector(selectRegisterError);
 
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
+    dispatch(
+      register({
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    )
+      .then(unwrapResult)
+      .catch(() =>
+        toast.error(`ERROR! User with the same name or email already exists.`)
+      );
+
     dispatch(
       register({
         name: form.elements.name.value,
@@ -47,11 +59,6 @@ const Register = () => {
         </Field>
         <Button type="submit">Register</Button>
       </Form>
-      {errorRegister && (
-        <ErrorText>
-          ERROR! User with the same name or email already exists.
-        </ErrorText>
-      )}
     </>
   );
 };

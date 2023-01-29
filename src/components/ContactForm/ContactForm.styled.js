@@ -50,10 +50,3 @@ export const Button = styled.button`
     background-color: #024e02;
   }
 `;
-
-export const ErrorText = styled.p`
-  color: red;
-  text-align: center;
-  font-size: 16px;
-  text-shadow: 2px 2px 8px #024e02;
-`;
