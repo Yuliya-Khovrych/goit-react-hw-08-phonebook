@@ -26,6 +26,12 @@ export const Input = styled.input`
   border-radius: 4px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+  &:focus,
+  &:hover {
+    border: 2px solid #024e02;
+    outline: none;
+  }
 `;
 
 export const Button = styled.button`
@@ -43,4 +49,11 @@ export const Button = styled.button`
     color: white;
     background-color: #024e02;
   }
+`;
+
+export const ErrorText = styled.p`
+  color: red;
+  text-align: center;
+  font-size: 16px;
+  text-shadow: 2px 2px 8px #024e02;
 `;

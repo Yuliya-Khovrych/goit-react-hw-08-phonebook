@@ -1,14 +1,17 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../redux/auth/authOperation';
+import { selectRegisterError } from '../redux/auth/authSelectors';
 import {
   Form,
   Field,
   Input,
   Button,
+  ErrorText,
 } from '../components/ContactForm/ContactForm.styled';
 
 const Register = () => {
   const dispatch = useDispatch();
+  const errorRegister = useSelector(selectRegisterError);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -20,11 +23,10 @@ const Register = () => {
         password: form.elements.password.value,
       })
     );
-    form.reset();
   };
 
   return (
-    <div>
+    <>
       <h2>Register, please...</h2>
       <Form onSubmit={handleSubmit}>
         <Field>
@@ -45,7 +47,12 @@ const Register = () => {
         </Field>
         <Button type="submit">Register</Button>
       </Form>
-    </div>
+      {errorRegister && (
+        <ErrorText>
+          ERROR! User with the same name or email already exists.
+        </ErrorText>
+      )}
+    </>
   );
 };
 

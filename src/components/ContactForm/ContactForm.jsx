@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { nanoid } from 'nanoid';
 import { Form, Field, Input, Button } from './ContactForm.styled';
 import { selectContacts } from '../../redux/selectors';
@@ -50,7 +50,6 @@ export const ContactForm = () => {
         />
       </Field>
       <Button type="submit">Add contact</Button>
-      <Toaster position="top-right" />
     </Form>
   );
 };
